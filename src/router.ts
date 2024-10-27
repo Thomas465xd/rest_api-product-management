@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { body } from "express-validator";
-import { createProduct, getProducts } from "./handers/product";
+import { body, param } from "express-validator";
+import { createProduct, deleteProduct, getProductById, getProducts, updateProduct, updateProductAvailability } from "./handers/product";
 import { handleInputErrors } from "./middleware";
 
 const router = Router();
@@ -9,6 +9,15 @@ const router = Router();
 router.get("/", 
 
     getProducts
+)
+
+router.get("/:id", 
+
+    // Validación
+    param("id")
+        .isInt({ min: 1 }).withMessage("Id must be a positive integer"),
+    handleInputErrors,
+    getProductById
 )
 
 router.post("/", 
@@ -24,16 +33,39 @@ router.post("/",
     createProduct
 )
 
-router.put("/", (req, res) => {
-    res.json("Desde PUT")
-})
+router.put("/:id", 
 
-router.patch("/", (req, res) => {
-    res.json("Desde patch")
-})
+    // Validación
+    param("id")
+        .isInt({ min: 1 }).withMessage("Id must be a positive integer"),
+    body("name")
+        .notEmpty().withMessage("Name of the product is required"),
+    body("price")
+        .notEmpty().withMessage("Price of the product is required")
+        .isNumeric().withMessage("Price must be a number")
+        .custom(value => value > 0).withMessage("Price must be greater than 0"),
+    body("availability")
+        .isBoolean().withMessage("Availability must be a boolean"),
+    handleInputErrors,
+    updateProduct
+)
 
-router.delete("/", (req, res) => {
-    res.json("Desde delete")
-})
+router.patch("/:id", 
+
+    // Validación
+    param("id")
+        .isInt({ min: 1 }).withMessage("Id must be a positive integer"),
+    handleInputErrors,
+    updateProductAvailability
+)
+
+router.delete("/:id", 
+
+    // Validación
+    param("id")
+        .isInt({ min: 1 }).withMessage("Id must be a positive integer"),
+    handleInputErrors,
+    deleteProduct
+)
 
 export default router

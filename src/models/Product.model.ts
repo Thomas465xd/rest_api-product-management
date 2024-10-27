@@ -9,20 +9,20 @@ class Product extends Model {
         type: DataType.STRING,
         allowNull: false,
     })
-    name!: string;  // Solo definimos el tipo, sin inicialización
+    declare name: string;  // Solo definimos el tipo, sin inicialización
     
     @Column({
         type: DataType.FLOAT,
         allowNull: false,
     })
-    price!: number;
+    declare price: number;
     
     @Column({
         type: DataType.BOOLEAN,
         allowNull: false,
         defaultValue: true,
     })
-    availability!: boolean;
+    declare availability: boolean;
 }
 
 export default Product
