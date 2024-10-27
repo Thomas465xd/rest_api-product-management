@@ -6,19 +6,23 @@ import { Table, Column, Model, DataType } from "sequelize-typescript";
 
 class Product extends Model {
     @Column({
-        type: DataType.STRING(100),
+        type: DataType.STRING,
+        allowNull: false,
     })
-    name: string
-
+    name!: string;  // Solo definimos el tipo, sin inicialización
+    
     @Column({
-        type: DataType.FLOAT(12, 2),
+        type: DataType.FLOAT,
+        allowNull: false,
     })
-    price: number
-
+    price!: number;
+    
     @Column({
         type: DataType.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
     })
-    avaibility: boolean
+    availability!: boolean;
 }
 
 export default Product
