@@ -14,7 +14,7 @@ export const getProducts = async (req: Request, res: Response) : Promise<void> =
         })
         res.json({data: products})
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 }
 
@@ -31,7 +31,7 @@ export const getProductById = async (req: Request, res: Response) : Promise<void
 
         res.json({data: product})
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 }
 
@@ -43,10 +43,10 @@ export const createProduct = async (req: Request, res: Response) : Promise<void>
         const product = new Product(req.body)
         const savedProduct = await product.save() 
         
-        res.json({data: savedProduct})
+        res.status(201).json({data: savedProduct})
         // res.json({data: product})
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 } 
 
@@ -69,7 +69,7 @@ export const updateProduct = async (req: Request, res: Response) : Promise<void>
 
         res.json({data: product})
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 }
 
@@ -92,7 +92,7 @@ export const updateProductAvailability = async (req: Request, res: Response) : P
 
         res.json({data: product})
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 }
 
@@ -114,6 +114,6 @@ export const deleteProduct = async (req: Request, res: Response) : Promise<void>
 
         res.json({data: "Product deleted"})
     } catch (error) {
-        console.log(error)
+        //console.log(error)
     }
 }

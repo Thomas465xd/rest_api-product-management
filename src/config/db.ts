@@ -1,21 +1,19 @@
 import { Sequelize } from "sequelize-typescript";
 import dotenv from "dotenv";
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import path from 'path';
 import Product from "../models/Product.model";
 
-dotenv.config()
+dotenv.config();
 
-// Utiliza import.meta.url para obtener la ruta del archivo actual
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Cambiar el nombre de la variable a algo como 'baseDir'
+const baseDir = path.resolve();
 
-const db = new Sequelize(process.env.DB_URL!,  {
+const db = new Sequelize(process.env.DB_URL!, {
     models: [Product],
     dialect: 'postgres',
     logging: false 
-})
+});
 
-db.addModels([__dirname + '/../models/*.ts'])
+db.addModels([path.join(baseDir, 'src/models/*.ts')]); // Ajusta la ruta según tu estructura de carpetas
 
-export default db 
+export default db;

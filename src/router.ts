@@ -6,11 +6,14 @@ import { handleInputErrors } from "./middleware";
 const router = Router();
 
 // Routing
+
+// GET all products
 router.get("/", 
 
     getProducts
 )
 
+// GET one product
 router.get("/:id", 
 
     // Validación
@@ -20,6 +23,7 @@ router.get("/:id",
     getProductById
 )
 
+// Create a new product
 router.post("/", 
 
     //Validación
@@ -33,6 +37,7 @@ router.post("/",
     createProduct
 )
 
+// Update a product
 router.put("/:id", 
 
     // Validación
@@ -50,6 +55,7 @@ router.put("/:id",
     updateProduct
 )
 
+// Update availability
 router.patch("/:id", 
 
     // Validación
@@ -59,6 +65,7 @@ router.patch("/:id",
     updateProductAvailability
 )
 
+// Delete a product
 router.delete("/:id", 
 
     // Validación
