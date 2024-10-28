@@ -1,11 +1,11 @@
 import express from "express";
 import cors, { CorsOptions } from "cors";
 import morgan from "morgan";
-import router from "./router";
-import db from "./config/db"
+import router from "./router.js";
+import db from "./config/db.js"
 import colors from "colors"
 import swaggerUI from "swagger-ui-express"
-import swaggerSpec, { swaggerUIOptions } from "./config/swagger";
+import swaggerSpec, { swaggerUIOptions } from "./config/swagger.js";
 
 // Conectar a la base de datos
 export async function connectDB() {
