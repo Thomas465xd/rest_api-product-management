@@ -24,7 +24,7 @@ const swaggerSpec = swaggerJSDoc(options);
 const swaggerUIOptions : SwaggerOptions = {
     customCss : `
         .topbar-wrapper .link {
-            content: url("https://www.svgrepo.com/show/530439/api-interface.svg");
+            content: url("https://www.svgrepo.com/show/354478/typescript-icon.svg");
             height: 80px;
             width: auto;
         }
