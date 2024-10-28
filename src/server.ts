@@ -24,20 +24,30 @@ connectDB()
 // Instancia de Express
 const server = express();
 
-// Allow CORS
-const corsOptions: CorsOptions = {
-    origin:  function(origin, callback) {
-        if(origin === process.env.FRONTEND_URL) {
-            //console.log("👍")
-            callback(null, true)
-        } else {
-            //console.log("👎")
-            callback(new Error("Not allowed by CORS"))
-        } 
-    }
-}
+// Allow CORS 
+const allowedOrigins = [
+    'https://rest-api-product-management.onrender.com',
+    process.env.FRONTEND_URL, // Ensure this is set correctly in your environment
+    'https://frontend-product-manage-git-563f3f-thomas-schrodingers-projects.vercel.app'
+];
 
-server.use(cors(corsOptions))
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Check if the origin is in the allowedOrigins array
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true); // Allow the request
+        } else {
+            callback(new Error("Not allowed by CORS")); // Reject the request
+        }
+    },
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify the allowed HTTP methods
+    //credentials: true, // Include credentials if needed (e.g., cookies, authorization headers)
+    optionsSuccessStatus: 204 // Some legacy browsers choke on 204
+};
+
+// Use CORS middleware
+server.use(cors(corsOptions));
+
 
 // Leer Datos de formularios
 server.use(express.json())
