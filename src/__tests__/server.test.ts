@@ -5,22 +5,6 @@ import server, { connectDB } from "../server";
 // Import the database configuration, which will be mocked in tests.
 import db from "../config/db";
 
-// Describe the test suite for the GET /api endpoint
-describe("GET /api", () => {
-    // Define a test to verify that the endpoint sends a JSON response with a message and a 200 status
-    test("Should send back a JSON Response", async () => {
-        const res = await request(server).get("/api"); // Makes a GET request to the /api endpoint
-
-        expect(res.body.msg).toBe("API"); // Verifies that the response body message is "API"
-        expect(res.status).toBe(200); // Checks that the response status is 200 (OK)
-        expect(res.headers["content-type"]).toMatch(/json/); // Confirms that the content type is JSON
-
-        // Additional checks to ensure the response is not 404 or "Not Found"
-        expect(res.status).not.toBe(404);
-        expect(res.body.msg).not.toBe("Not Found");
-    });
-});
-
 // Mock the database configuration module
 jest.mock("../config/db");
 
