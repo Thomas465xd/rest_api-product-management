@@ -5,10 +5,10 @@ import Product from "../models/Product.model";
 export const getProducts = async (req: Request, res: Response) : Promise<void> => {
     try {
         const products = await Product.findAll({
-            /*
             order: [
-                ['id', 'ASC']
+                ['price', 'DESC']
             ], 
+            /*
             limit: 10
             */
         })

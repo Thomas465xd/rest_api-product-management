@@ -14,6 +14,6 @@ const db = new Sequelize(process.env.DB_URL!, {
     logging: false 
 });
 
-db.addModels([path.join(baseDir, 'src/models/*.ts')]); // Ajusta la ruta según tu estructura de carpetas
+db.addModels([path.join(baseDir, 'src/models/*')]); // Ajusta la ruta según tu estructura de carpetas
 
 export default db;
